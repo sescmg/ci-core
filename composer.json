@@ -1,0 +1,20 @@
+{
+    "name": "sescmg/ci-core",
+    "description": "Customização do core do Codeigniter 3.x",
+    "type": "library",
+    "license": "MIT",
+    "version": "0.0.1",
+    "authors": [
+        {
+            "name": "Robson Piere",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/sescmg/ci-core",
+        "issues": "https://github.com/sescmg/ci-core/issues"
+    },
+    "require": {
+        
+    }
+}
