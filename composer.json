@@ -16,5 +16,13 @@
     },
     "require": {
         
+    },
+    "autoload": {
+        "psr-4": {
+            "Sescmg\\CiCore\\" : "src/"
+        }
+    },
+    "require-dev": {
+        "codeigniter/framework": "^3.1"
     }
 }
