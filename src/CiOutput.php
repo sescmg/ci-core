@@ -8,6 +8,8 @@ class CiOutput extends \CI_Output
     protected const HTTP_CREATED = 201;
 
     protected const HTTP_BAD_REQUEST = 400;
+    protected const HTTP_UNAUTHORIZED = 401;
+
 
     /**
      * Send json respose to browser and exit
@@ -85,6 +87,15 @@ class CiOutput extends \CI_Output
         );
     }
 
+    /**
+     * Send response with status 400
+     *
+     * @param mixed $data
+     * @param array $details
+     * @param string $message
+     * @param string $code
+     * @return void
+     */
     public function jsonBadRequest($data, array $details, string $message = null, $code = null): void
     {
         $this->responseJson(
@@ -93,6 +104,12 @@ class CiOutput extends \CI_Output
         );
     }
 
+    /**
+     * Send response with status 400 and form validation errors
+     *
+     * @param string $message
+     * @return void
+     */
     public function jsonFormValidationError(string $message = null)
     {
         $ci =& get_instance();
@@ -105,16 +122,24 @@ class CiOutput extends \CI_Output
         );
     }
 
-    protected function prepareErrorArray(array $errors)
-    {
-        $keys = array_keys($errors);
-        $values = array_values($errors);
 
-        return array_map(function($key, $value) {
-            return [
-                'target' => $key,
-                'message' => $value
-            ];
-        }, $keys, $values);
+    /**
+     * Modify error array
+     *
+     * @param array $errors
+     * @return array
+     */
+    protected function prepareErrorArray(array $errors): array
+    {
+        return array_map(
+            function ($key, $value) {
+                return [
+                    'target' => $key,
+                    'message' => $value
+                ];
+            },
+            array_keys($errors),
+            array_values($errors)
+        );
     }
 }
