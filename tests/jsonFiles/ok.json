@@ -1,1 +1,6 @@
-{"data":{"foo":"bar"},"message":"message"}
+{
+    "data": {
+        "foo": "bar"
+    },
+    "message": "message"
+}
