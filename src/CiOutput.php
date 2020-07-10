@@ -7,6 +7,8 @@ class CiOutput extends \CI_Output
     protected const HTTP_OK = 200;
     protected const HTTP_CREATED = 201;
 
+    protected const HTTP_BAD_REQUEST = 400;
+
     /**
      * Send json respose to browser and exit
      *
@@ -42,6 +44,14 @@ class CiOutput extends \CI_Output
             $response['message'] = $message;
         }
 
+        if (!empty($details)) {
+            $response['details'] = $details;
+        }
+
+        if (is_string($code) && !empty($code)) {
+            $response['code'] = $code;
+        }
+
         return $response;
     }
 
@@ -73,5 +83,38 @@ class CiOutput extends \CI_Output
             $this->createResponse($data, $message),
             $this::HTTP_CREATED
         );
+    }
+
+    public function jsonBadRequest($data, array $details, string $message = null, $code = null): void
+    {
+        $this->responseJson(
+            $this->createResponse($data, $message, $details, $code),
+            $this::HTTP_BAD_REQUEST
+        );
+    }
+
+    public function jsonFormValidationError(string $message = null)
+    {
+        $ci =& get_instance();
+        $errors = $ci->form_validation->error_array();
+        $this->jsonBadRequest(
+            null,
+            $this->prepareErrorArray($errors),
+            $message,
+            'validationError'
+        );
+    }
+
+    protected function prepareErrorArray(array $errors)
+    {
+        $keys = array_keys($errors);
+        $values = array_values($errors);
+
+        return array_map(function($key, $value) {
+            return [
+                'target' => $key,
+                'message' => $value
+            ];
+        }, $keys, $values);
     }
 }

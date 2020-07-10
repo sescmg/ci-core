@@ -1,0 +1,15 @@
+{
+    "data": null,
+    "message" : "The form has errors!",
+    "details": [
+        {
+            "target": "foo",
+            "message": "The foo field must contain an integer."
+        },
+        {
+            "target": "bar",
+            "message": "The bar field is required."
+        }
+    ],
+    "code": "validationError"
+}

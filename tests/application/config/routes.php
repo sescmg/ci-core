@@ -53,9 +53,6 @@ $route['default_controller'] = 'json';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['ok'] = 'json/OK';
-$route['created'] = 'json/CREATED';
-
-
-
-
+$route['ok'] = 'json/ok';
+$route['created'] = 'json/created';
+$route['badrequest'] = 'json/badrequest';
