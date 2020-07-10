@@ -57,3 +57,4 @@ $route['ok'] = 'json/ok';
 $route['created'] = 'json/created';
 $route['badrequest'] = 'json/badrequest';
 $route['unauthorized'] = 'json/unauthorized';
+$route['forbidden'] = 'json/forbidden';

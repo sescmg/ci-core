@@ -35,4 +35,9 @@ class Json extends CI_Controller {
 		$this->output->jsonUnauthorized("message unautorized");
 	}
 
+	public function forbidden()
+	{
+		$this->output->jsonForbidden("message forbidden");
+	}
+
 }

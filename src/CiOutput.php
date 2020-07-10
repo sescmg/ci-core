@@ -121,6 +121,21 @@ class CiOutput extends \CI_Output
     }
 
     /**
+     * Send response with status 403
+     *
+     * @param string $message
+     * @param string $code
+     * @return void
+     */
+    public function jsonForbidden(string $message = null, string $code = 'Forbidden'): void
+    {
+        $this->responseJson(
+            $this->createResponse(null, $message, [], $code),
+            $this::HTTP_FORBIDDEN
+        );
+    }
+
+    /**
      * Send response with status 400 and form validation errors
      *
      * @param string $message

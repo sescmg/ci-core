@@ -43,4 +43,14 @@ class ResponseTeste extends TestCase
             $response['body']
         );
     }
+
+    public function testForbidden()
+    {
+        $response = request('forbidden');
+        $this->assertEquals(403, $response['statusCode']);
+        $this->assertJsonStringEqualsJsonFile(
+            getJsonPath('forbidden.json'),
+            $response['body']
+        );
+    }
 }
