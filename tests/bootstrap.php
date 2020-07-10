@@ -1,6 +1,7 @@
 <?php
 
-function request(string $url) {
+function request(string $url)
+{
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HEADER, 1);
@@ -16,24 +17,22 @@ function request(string $url) {
     curl_close($ch);
     return [
         "headers" => $headers,
-        'statusCode'=> $statusCode,
+        'statusCode' => $statusCode,
         "body" => $body
     ];
 }
 
 function getHeaders($input)
 {
-    $data = explode("\n",$input);
+    $data = explode("\n", $input);
     $headers['status'] = $data[0];
     array_shift($data);
 
-    foreach($data as $part){
-
-        //some headers will contain ":" character (Location for example), and the part after ":" will be lost, Thanks to @Emanuele
-        $middle = explode(":",$part,2);
-
-        //Supress warning message if $middle[1] does not exist, Thanks to @crayons
-        if ( !isset($middle[1]) ) { $middle[1] = null; }
+    foreach ($data as $part) {
+        $middle = explode(":", $part, 2);
+        if (!isset($middle[1])) {
+            $middle[1] = null;
+        }
 
         $headers[trim($middle[0])] = trim($middle[1]);
     }
@@ -42,5 +41,5 @@ function getHeaders($input)
 
 function getJsonPath(string $json)
 {
-   return realpath(__DIR__.DIRECTORY_SEPARATOR. 'jsonFiles' . DIRECTORY_SEPARATOR . $json);
+    return realpath(__DIR__ . DIRECTORY_SEPARATOR . 'jsonFiles' . DIRECTORY_SEPARATOR . $json);
 }

@@ -53,4 +53,14 @@ class ResponseTeste extends TestCase
             $response['body']
         );
     }
+
+    public function testNotFound()
+    {
+        $response = request('notfound');
+        $this->assertEquals(404, $response['statusCode']);
+        $this->assertJsonStringEqualsJsonFile(
+            getJsonPath('notfound.json'),
+            $response['body']
+        );
+    }
 }

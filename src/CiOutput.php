@@ -10,6 +10,7 @@ class CiOutput extends \CI_Output
     public const HTTP_BAD_REQUEST = 400;
     public const HTTP_UNAUTHORIZED = 401;
     public const HTTP_FORBIDDEN = 403;
+    public const HTTP_NOT_FOUND = 404;
 
 
     /**
@@ -117,6 +118,21 @@ class CiOutput extends \CI_Output
         $this->responseJson(
             $this->createResponse(null, $message, [], $code),
             $this::HTTP_UNAUTHORIZED
+        );
+    }
+
+    /**
+     * Send response with status 404
+     *
+     * @param string $message
+     * @param string $code
+     * @return void
+     */
+    public function jsonNotFound(string $message = null, string $code = null): void
+    {
+        $this->responseJson(
+            $this->createResponse(null, $message, [], $code),
+            $this::HTTP_NOT_FOUND
         );
     }
 
