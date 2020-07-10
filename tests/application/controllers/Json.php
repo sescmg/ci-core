@@ -44,4 +44,14 @@ class Json extends CI_Controller
     {
         $this->output->jsonNotFound("message not found");
     }
+    
+    public function error()
+    {
+        $this->output->jsonError("message error");
+    }
+    
+    public function serviceUnavailable()
+    {
+        $this->output->jsonError("message unavailable", $this->output::HTTP_SERVICE_UNAVAILABLE, "unavailable");
+    }
 }

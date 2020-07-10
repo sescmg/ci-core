@@ -59,3 +59,6 @@ $route['badrequest'] = 'json/badrequest';
 $route['unauthorized'] = 'json/unauthorized';
 $route['forbidden'] = 'json/forbidden';
 $route['notfound'] = 'json/notfound';
+$route['error'] = 'json/error';
+$route['unavailable'] = 'json/serviceUnavailable';
+

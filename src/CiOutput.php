@@ -12,6 +12,8 @@ class CiOutput extends \CI_Output
     public const HTTP_FORBIDDEN = 403;
     public const HTTP_NOT_FOUND = 404;
 
+    public const HTTP_INTERNAL_SERVER_ERROR = 500;
+    public const HTTP_SERVICE_UNAVAILABLE = 503;
 
     /**
      * Send json respose to browser and exit
@@ -148,6 +150,14 @@ class CiOutput extends \CI_Output
         $this->responseJson(
             $this->createResponse(null, $message, [], $code),
             $this::HTTP_FORBIDDEN
+        );
+    }
+
+    public function jsonError(string $message = null, int $statusCode = self::HTTP_INTERNAL_SERVER_ERROR, string $code = 'Error'): void
+    {
+        $this->responseJson(
+            $this->createResponse(null, $message, [], $code),
+            $statusCode
         );
     }
 

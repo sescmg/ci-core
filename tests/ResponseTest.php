@@ -63,4 +63,24 @@ class ResponseTeste extends TestCase
             $response['body']
         );
     }
+
+    public function testError()
+    {
+        $response = request('error');
+        $this->assertEquals(500, $response['statusCode']);
+        $this->assertJsonStringEqualsJsonFile(
+            getJsonPath('error.json'),
+            $response['body']
+        );
+    }
+
+    public function testUnavailable()
+    {
+        $response = request('unavailable');
+        $this->assertEquals(503, $response['statusCode']);
+        $this->assertJsonStringEqualsJsonFile(
+            getJsonPath('unavailable.json'),
+            $response['body']
+        );
+    }
 }
