@@ -33,4 +33,14 @@ class ResponseTeste extends TestCase
             $response['body']
         );
     }
+
+    public function testUnauthorized()
+    {
+        $response = request('unauthorized');
+        $this->assertEquals(401, $response['statusCode']);
+        $this->assertJsonStringEqualsJsonFile(
+            getJsonPath('unauthorized.json'),
+            $response['body']
+        );
+    }
 }

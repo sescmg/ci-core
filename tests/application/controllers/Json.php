@@ -30,4 +30,9 @@ class Json extends CI_Controller {
 		$this->output->jsonFormValidationError('The form has errors!');
 	}
 
+	public function unauthorized()
+	{
+		$this->output->jsonUnauthorized("message unautorized");
+	}
+
 }

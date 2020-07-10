@@ -96,11 +96,26 @@ class CiOutput extends \CI_Output
      * @param string $code
      * @return void
      */
-    public function jsonBadRequest($data, array $details, string $message = null, $code = null): void
+    public function jsonBadRequest($data, array $details, string $message = null, string $code = null): void
     {
         $this->responseJson(
             $this->createResponse($data, $message, $details, $code),
             $this::HTTP_BAD_REQUEST
+        );
+    }
+
+    /**
+     * Send response with status 401
+     *
+     * @param string $message
+     * @param string $code
+     * @return void
+     */
+    public function jsonUnauthorized(string $message = null, string $code = 'Unauthorized'): void
+    {
+        $this->responseJson(
+            $this->createResponse(null, $message, [], $code),
+            $this::HTTP_UNAUTHORIZED
         );
     }
 
