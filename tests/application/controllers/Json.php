@@ -5,17 +5,19 @@ class Json extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->ok();
 	}
 
-	public function OK()
+	public function ok()
 	{
-		$this->load->view('welcome_message');
+		$this->output->jsonOk([
+			"foo" => 'bar'
+		], "message");
 	}
 
-	public function CREATED()
+	public function created()
 	{
-		$this->load->view('welcome_message');
+		$this->output->jsonCreated(null, "message");
 	}
 
 }
